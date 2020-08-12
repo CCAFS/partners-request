@@ -1,0 +1,77 @@
+<div class="container">
+    <h2>Request New Institution</h2>
+    <div class="row form-container">
+        <form class="col" [formGroup]="form" (ngSubmit)="submit()">
+
+            <div class="row ">
+                <div class="col information-container">
+                    <p>
+                        Please enter the institution as the legal entity.
+                        <br>
+                        The name of the institution should be in its official language. (e.g. For CIAT: Centro
+                        Internacional de Agricultura Tropical).
+                    </p>
+                </div>
+            </div>
+
+            <div class="row justify-content-between">
+                <div class="form-group col-4">
+                    <label for="acronym">Acronym:</label>
+                    <input formControlName="acronym" id="acronym" type="text" class="form-control">
+                    <div *ngIf="f.acronym.touched && f.acronym.invalid" class="alert alert-danger">
+                        <div *ngIf="f.acronym.errors.minlength">Acronym should have minimum 3 character.</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-8">
+                    <label class="required" for="name">Name:</label>
+                    <input formControlName="name" id="name" type="text" class="form-control">
+                    <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                        <div *ngIf="f.name.errors.required">Name is required.</div>
+                        <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="type" class="required">Type:</label>
+                    <select formControlName="type" #type class="form-control" (change)="changeWebsite(type.value)">
+                        <option selected>Select Type</option>
+                        <option *ngFor="let type of insTypes" [value]="type.code">{{type.name}}</option>
+                    </select>
+                    <div *ngIf="f.type.touched && f.type.invalid" class="alert alert-danger">
+                        <div *ngIf="f.type.errors.required">Type is required.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="headquarter" class="required">Headquarter:</label>
+                    <select formControlName="headquarter" #headquarter placeholder="Select an option..." class="form-control" (change)="changeWebsite(headquarter.value)">
+                        <option selected>Select Headquarter</option>
+                        <option *ngFor="let type of institutions" [value]="type.code">{{type.name}}</option>
+                    </select>
+                    <div *ngIf="f.headquarter.touched && f.headquarter.invalid" class="alert alert-danger">
+                        <div *ngIf="f.headquarter.errors.required">Headquarter is required.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="website">Website:</label>
+                    <input formControlName="website" placeholder="https://www.example.org" id="website" type="text" class="form-control">
+                    <div *ngIf="f.website.touched && f.website.invalid" class="alert alert-danger">
+                        Website should be a valid url.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <button type="button" class="btn btn-info btn-lg" (click)="submit()"
+                    [disabled]="form.status === 'INVALID'">Request new institution</button>
+            </div>
+        </form>
+
+    </div>
+</div>

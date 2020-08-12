@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/variables.scss";
+@import "./assets/scss/_fonts.scss";
+
+body {
+  font-family: $primary_font !important;
+  .information-container {
+    border: 1px var(--gray-secondary) dashed;
+    background: var( --background-contrast);
+    margin: 10px 15px;
+    padding: 15px;
+    border-radius: 5px;
+    p{
+      margin-bottom: 0;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--gray-secondary);
+    }
+  }
+}
