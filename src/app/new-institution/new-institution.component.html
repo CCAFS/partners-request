@@ -35,10 +35,22 @@
 
             <div class="row">
                 <div class="form-group col">
+                    <label for="type" class="required">Acronym of CGIAR entity:</label>
+                    <select formControlName="crp" #crp class="form-control" (change)="changeWebsite(crp.value, 'crp')">
+                        <option selected disabled>Select Crp</option>
+                        <option *ngFor="let crp of crps | orderBy:'name'" [value]="crp.acronym">{{crp.name}}</option>
+                    </select>
+                    <div *ngIf="f.crp.touched && f.crp.invalid" class="alert alert-danger">
+                        <div *ngIf="f.crp.errors.required">Acronym of CGIAR entity is required.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
                     <label for="type" class="required">Type:</label>
-                    <select formControlName="type" #type class="form-control" (change)="changeWebsite(type.value)">
-                        <option selected>Select Type</option>
-                        <option *ngFor="let type of insTypes" [value]="type.code">{{type.name}}</option>
+                    <select formControlName="type" #type class="form-control" (change)="changeWebsite(type.value, 'type')" data-live-search="true">
+                        <option selected disabled>Select Type</option>
+                        <option *ngFor="let type of insTypes | orderBy:'name'" [value]="type.code">{{type.name}}</option>
                     </select>
                     <div *ngIf="f.type.touched && f.type.invalid" class="alert alert-danger">
                         <div *ngIf="f.type.errors.required">Type is required.</div>
@@ -47,10 +59,10 @@
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="headquarter" class="required">Headquarter:</label>
-                    <select formControlName="headquarter" #headquarter placeholder="Select an option..." class="form-control" (change)="changeWebsite(headquarter.value)">
-                        <option selected>Select Headquarter</option>
-                        <option *ngFor="let type of institutions" [value]="type.code">{{type.name}}</option>
+                    <label for="headquarter" class="required">Headquarter country:</label>
+                    <select formControlName="headquarter" #headquarter placeholder="Select an option..." class="form-control" (change)="changeWebsite(headquarter.value, 'headquarter')">
+                        <option selected disabled>Select Headquarter</option>
+                        <option *ngFor="let type of countries | orderBy:'name'" [value]="type.isoAlpha2">{{type.name}}</option>
                     </select>
                     <div *ngIf="f.headquarter.touched && f.headquarter.invalid" class="alert alert-danger">
                         <div *ngIf="f.headquarter.errors.required">Headquarter is required.</div>

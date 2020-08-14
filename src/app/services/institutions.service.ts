@@ -17,11 +17,27 @@ export class InstitutionsService {
   getInstitutionsTypes(){
     return this.http.get<any>(`${environment.apiUrl}/institution-types`);
   }
+
   /**
    * 
    */
-  getInstitutions(){
-    return this.http.get<any>(`${environment.apiUrl}/institutions`);
+  getCountries(){
+    return this.http.get<any>(`${environment.apiUrl}/countries`);
   }
-
+  
+  /**
+   * 
+   */
+  getCRPS(){
+    return this.http.get<any>(`${environment.apiUrl}/cgiar-entities`);
+  }
+  
+  /**
+   * 
+   * @param cgiar_entity entity acronym
+   * @param params 
+   */
+  createPartner(cgiar_entity, params){
+    return this.http.post<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/institution-requests`, params);
+  }
 }
