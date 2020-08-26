@@ -1,0 +1,23 @@
+.partner-container {
+    border: 1px solid grey;
+    margin: 5px 10px;
+}
+h2 {
+    margin: 5px 0;
+}
+
+.info-row {
+    font-weight: bold;
+    p {
+        font-weight: 300;
+        margin: 0 5px;
+    }
+}
+
+.partner-container {
+    .justify-content-end {
+        button {
+            margin: 10px;
+        }
+    }
+}

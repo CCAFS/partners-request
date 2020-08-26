@@ -1,1 +1,64 @@
-<p>manage-partners works!</p>
+<div class="container">
+    <h2>Manage Partners</h2>
+
+    <div class="form-container">
+        <div class="col">
+            <div class="information-container">
+                <ol>
+                    <li *ngFor="let rule of rules | slice:0:3; let i = index">{{rule.text}}</li>
+                    <div class="collapse" id="collapseRules">
+                        <li *ngFor="let rule of rules | slice:4:8; let i = index">{{rule.text}}</li>
+                    </div>
+                </ol>
+                <div class="row justify-content-center">
+                    <a data-toggle="collapse" href="#collapseRules" role="button" aria-expanded="false"
+                        aria-controls="collapseRules" (click)="isCollapsed = !isCollapsed">
+                        {{(isCollapsed) ? 'Collapse': 'See more'}}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <h3 class="row col">Requested institutions</h3>
+    <div class="col">
+        <form class="col" *ngIf="crps.length > 0" [formGroup]="acceptanceForm" (ngSubmit)="submit()">
+
+            <div class="row col">
+                <div class="form-group col">
+                    <label for="type" class="required">Acronym of CGIAR entity:</label>
+                    <select formControlName="crp" #crp class="form-control" (change)="changeCRP
+                    (crp.value, 'crp')">
+                        <option selected disabled>Select Crp</option>
+                        <option *ngFor="let crp of crps | orderBy:'name'" [value]="crp.acronym">{{crp.name}}</option>
+                    </select>
+                    <div *ngIf="f.crp.touched && f.crp.invalid" class="alert alert-danger">
+                        <div *ngIf="f.crp.errors.required">Acronym of CGIAR entity is required.</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row col">
+        <div class="col-12 partner-container" *ngFor="let partner of requestedPartners">
+            <h2>{{(partner.acronym) ? partner.acronym + ' - ': ''}} {{partner.partnerName}}</h2>
+            <div *ngIf="partner.webPage">
+                ( <a href="{{partner.webPage}}" target="_blank">{{partner.webPage}}</a>)
+            </div>
+            <hr>
+            <span class="row col-12 info-row">Type: <p>{{partner.institutionTypeDTO.name}}</p></span>
+            <span class="row col-12 info-row">Country: <p>{{partner.countryDTO.name}}</p></span>
+            <span class="row col-12 info-row">Requested Source: <p>{{partner.institutionTypeDTO.name}}</p></span>
+            <!-- <span>CRP: <p>{{f.crp | json}}</p></span> -->
+            <span class="row col-12 info-row">Requested by: <p>{{partner.externalUserName}} {{partner.externalUserMail}}
+                </p></span>
+            <!-- <span>Active since: <p>{{partner.institutionTypeDTO.name)}}</p></span> -->
+
+
+            <div class="row justify-content-end">
+                <button type="button" class="btn btn-success">Approve</button>
+                <button type="button" class="btn btn-danger">Reject</button>
+            </div>
+        </div>
+    </div>
+</div>
