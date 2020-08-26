@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host=0.0.0.0 --port=4100 --disable-host-check",
+    "dev": "npx lite-server --baseDir='./dist/partners-request'",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

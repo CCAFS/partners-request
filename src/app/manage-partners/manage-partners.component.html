@@ -75,7 +75,7 @@
                 </div>
             </ng-template>
         </div>
-        <div class="col-12" *ngIf="requestedPartners.length == 0">
+        <div class="col-12" *ngIf="requestedPartners.length == 0 && selectedCRP != ''">
             <h2>
                 None Partner Request for {{selectedCRP}}
             </h2>
