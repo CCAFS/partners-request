@@ -48,4 +48,18 @@ export class InstitutionsService {
   listRequestedPartners(cgiar_entity){
     return this.http.get<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/institution-all-requests}`);
   }
+
+   /**
+   * 
+   * @param cgiar_entity entity acronym
+   * @param params 
+   */
+  managePartnerRequest(cgiar_entity, params){
+    return this.http.post<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/accept-institution-request`, params);
+  }
+
+
+
+
+
 }

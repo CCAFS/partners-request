@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InstitutionsService } from '../services/institutions.service';
 
+import { NgxSpinnerService } from "ngx-spinner";
+
 import { environment } from '../../environments/environment';
+import { AlertService } from '../services/alert.service';
 
 
 @Component({
@@ -25,9 +28,12 @@ export class NewInstitutionComponent implements OnInit {
   countries = [];
   crps = [];
 
-  constructor(private institutionsService: InstitutionsService) { }
+  constructor(private institutionsService: InstitutionsService,
+    private alert: AlertService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.getInstitutionsTypes();
     this.getCountries();
     this.getCRPS();
@@ -39,6 +45,7 @@ export class NewInstitutionComponent implements OnInit {
 
   submit() {
     let params;
+    this.spinner.show();
     if (this.form.status === 'VALID') {
       params = {
         "name": this.form.value.name,
@@ -56,24 +63,22 @@ export class NewInstitutionComponent implements OnInit {
           res => {
             console.log(res);
             // this.crps = res;
-            this.resetValues()
+            this.resetValues();
+            this.spinner.hide();
+            this.alert.success(`${res.partnerName} is ${res.requestStatus.toLowerCase()}.`);
           },
           error => {
             console.error("submit", error);
+            this.alert.error(`${error.status} : ${error.statusText}.`)
+            this.spinner.hide();
           },
         )
     }
   }
 
   resetValues() {
-    this.form.reset({ name: '', headquarter: '', type: '', website: '', acronym: '' , crp: ''});
+    this.form.reset({ name: '', headquarter: '', type: '', website: '', acronym: '', crp: '' });
   }
-
-  changeWebsite(e, prop?) {
-    console.log(e, prop);
-  }
-
-
 
   /**
    * ** API calls
@@ -84,9 +89,13 @@ export class NewInstitutionComponent implements OnInit {
         res => {
           // console.log(res);
           this.insTypes = res;
+          this.spinner.hide();
+
         },
         error => {
           console.error("getInstitutionsTypes", error);
+          this.spinner.hide();
+
         },
       )
   }
@@ -96,9 +105,13 @@ export class NewInstitutionComponent implements OnInit {
         res => {
           // console.log(res);
           this.countries = res;
+          this.spinner.hide();
+
         },
         error => {
           console.error("getCountries", error);
+          this.spinner.hide();
+
         },
       )
   }
@@ -107,10 +120,14 @@ export class NewInstitutionComponent implements OnInit {
       .subscribe(
         res => {
           // console.log(res);
-          this.crps = res;
+          this.crps = res.filter(crp => crp.cgiarEntityTypeDTO.code == 1 || crp.cgiarEntityTypeDTO.code == 3);
+          this.spinner.hide();
+
         },
         error => {
           console.error("getCRPS", error);
+          this.spinner.hide();
+
         },
       )
   }

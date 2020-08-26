@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,13 +12,17 @@ import { BasicAuthInterceptor } from './_helpers/basic-auth.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+
 import { NgPipesModule } from 'ngx-pipes';
+import { AlertComponent } from './_shared/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewInstitutionComponent,
-    ManagePartnersComponent
+    ManagePartnersComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -27,12 +32,15 @@ import { NgPipesModule } from 'ngx-pipes';
     NgPipesModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

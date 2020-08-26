@@ -28,8 +28,7 @@
             <div class="row col">
                 <div class="form-group col">
                     <label for="type" class="required">Acronym of CGIAR entity:</label>
-                    <select formControlName="crp" #crp class="form-control" (change)="changeCRP
-                    (crp.value, 'crp')">
+                    <select formControlName="crp" #crp class="form-control" (change)="changeCRP(crp.value, 'crp')">
                         <option selected disabled>Select Crp</option>
                         <option *ngFor="let crp of crps | orderBy:'name'" [value]="crp.acronym">{{crp.name}}</option>
                     </select>
@@ -41,8 +40,9 @@
         </form>
     </div>
     <div class="row col">
-        <div class="col-12 partner-container" *ngIf="requestedPartners.length > 0">
-            <ng-template *ngFor="let partner of requestedPartners">
+        <div class="col-12" *ngIf="requestedPartners.length > 0">
+
+            <div class="col-12 partner-container" *ngFor="let partner of requestedPartners">
 
                 <h2>{{(partner.acronym) ? partner.acronym + ' - ': ''}} {{partner.partnerName}}</h2>
                 <div *ngIf="partner.webPage">
@@ -55,6 +55,7 @@
                         class="flag-icon flag-icon-{{partner.countryDTO.isoAlpha2.toLowerCase()}}"></span>
                     <p>{{partner.countryDTO.name}}</p>
                 </span>
+                <span class="row col-12 info-row info-row-type">CRP: <p>{{selectedCRP}}</p></span>
                 <span class="row col-12 info-row info-row-source">Requested Source: <p>
                         {{partner.institutionTypeDTO.name}}
                     </p></span>
@@ -68,12 +69,12 @@
                         <fa-icon [icon]="faCheck"></fa-icon>
                         Approve
                     </button>
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-danger" (click)="open(content, partner)">
                         <fa-icon [icon]="faTimes"></fa-icon>
                         Reject
                     </button>
                 </div>
-            </ng-template>
+            </div>
         </div>
         <div class="col-12" *ngIf="requestedPartners.length == 0 && selectedCRP != ''">
             <h2>
@@ -81,4 +82,36 @@
             </h2>
         </div>
     </div>
+
+
+    <!-- 
+
+        **** MODALS ****
+     -->
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-basic-title">Reject Partner {{selectedPartner.partnerName}}?</h3>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="rejectionForm">
+                <textarea style="width: 100%;" name = "justification" placeholder="Why you want to reject this partner?" formControlName="justification" ></textarea>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary"
+                (click)="modal.dismiss('cancel click')">Cancel</button>
+            <button type="button" class="btn btn-success" (click)="modal.close('ok clicked')">Ok</button>
+        </div>
+    </ng-template>
+
+    <!-- 
+
+        **** Spinner ****
+
+     -->
+     <ngx-spinner></ngx-spinner>
 </div>

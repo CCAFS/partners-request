@@ -48,9 +48,11 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="type" class="required">Type:</label>
-                    <select formControlName="type" #type class="form-control" (change)="changeWebsite(type.value, 'type')" data-live-search="true">
+                    <select formControlName="type" #type class="form-control"
+                        (change)="changeWebsite(type.value, 'type')" data-live-search="true">
                         <option selected disabled>Select Type</option>
-                        <option *ngFor="let type of insTypes | orderBy:'name'" [value]="type.code">{{type.name}}</option>
+                        <option *ngFor="let type of insTypes | orderBy:'name'" [value]="type.code">{{type.name}}
+                        </option>
                     </select>
                     <div *ngIf="f.type.touched && f.type.invalid" class="alert alert-danger">
                         <div *ngIf="f.type.errors.required">Type is required.</div>
@@ -60,9 +62,11 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="headquarter" class="required">Headquarter country:</label>
-                    <select formControlName="headquarter" #headquarter placeholder="Select an option..." class="form-control" (change)="changeWebsite(headquarter.value, 'headquarter')">
+                    <select formControlName="headquarter" #headquarter placeholder="Select an option..."
+                        class="form-control" (change)="changeWebsite(headquarter.value, 'headquarter')">
                         <option selected disabled>Select Headquarter</option>
-                        <option *ngFor="let type of countries | orderBy:'name'" [value]="type.isoAlpha2">{{type.name}}</option>
+                        <option *ngFor="let type of countries | orderBy:'name'" [value]="type.isoAlpha2">{{type.name}}
+                        </option>
                     </select>
                     <div *ngIf="f.headquarter.touched && f.headquarter.invalid" class="alert alert-danger">
                         <div *ngIf="f.headquarter.errors.required">Headquarter is required.</div>
@@ -72,7 +76,8 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="website">Website:</label>
-                    <input formControlName="website" placeholder="https://www.example.org" id="website" type="text" class="form-control">
+                    <input formControlName="website" placeholder="https://www.example.org" id="website" type="text"
+                        class="form-control">
                     <div *ngIf="f.website.touched && f.website.invalid" class="alert alert-danger">
                         Website should be a valid url.
                     </div>
@@ -86,4 +91,10 @@
         </form>
 
     </div>
+    <!-- 
+
+        **** Spinner ****
+
+     -->
+    <ngx-spinner></ngx-spinner>
 </div>

@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InstitutionsService } from '../services/institutions.service';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from "ngx-spinner";
+
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-manage-partners',
@@ -25,31 +29,76 @@ export class ManagePartnersComponent implements OnInit {
   acceptanceForm = new FormGroup({
     crp: new FormControl('', [Validators.required]),
   });
+  rejectionForm = new FormGroup({
+    justification: new FormControl('', []),
+  });
   isCollapsed = false;
   crps = [];
   requestedPartners = [];
   faCheck = faCheck;
   faTimes = faTimes;
   selectedCRP = '';
+  selectedPartner = '';
+  closeResult = '';
 
 
-  constructor(private institutionsService: InstitutionsService) { }
+  constructor(private institutionsService: InstitutionsService,
+    private modalService: NgbModal,
+    private alert: AlertService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.getCRPS();
   }
 
   resetValues() {
-    this.acceptanceForm.reset({ crp: '' });
+    this.rejectionForm.reset({ justification: '' });
   }
 
   changeCRP(e, prop?) {
+    this.spinner.show();
     this.getResquestPartners();
   }
 
 
   get f() {
     return this.acceptanceForm.controls;
+  }
+  get g() {
+    return this.rejectionForm.controls;
+  }
+
+  open(content, partner) {
+    this.selectedPartner = partner;
+    this.modalService.open(content, { size: 'lg', ariaLabelledBy: 'modal-basic-title' })
+      .result.then((result) => {
+        // reject partner request 
+        if (result === 'ok clicked') {
+          let params = {
+            "code": this.selectedPartner['id'],
+            "justification": this.rejectionForm.value.justification,
+            "accept": false,
+          }
+          this.resetValues();
+          this.spinner.show();
+          this.institutionsService.managePartnerRequest(this.selectedCRP, params)
+            .subscribe(
+              res => {
+                console.log(res);
+                this.spinner.hide();
+                this.alert.success(`${res.partnerName} is ${res.requestStatus.toLowerCase()}.`);
+              },
+              error => {
+                this.spinner.hide();
+                console.error("reject partner request ", error);
+                this.alert.error(`${error.status} : ${error.statusText}.`)
+              },
+            )
+        }
+      }, (reason) => {
+        this.resetValues();
+      });
   }
 
   /**
@@ -60,12 +109,15 @@ export class ManagePartnersComponent implements OnInit {
     this.institutionsService.listRequestedPartners(this.selectedCRP)
       .subscribe(
         res => {
-          console.log(res);
           this.requestedPartners = res;
+          console.log(this.requestedPartners);
+          this.spinner.hide();
           // this.resetValues()
         },
         error => {
           console.error("getResquestPartners", error);
+          this.spinner.hide();
+          this.alert.error(error)
         },
       )
   }
@@ -73,14 +125,16 @@ export class ManagePartnersComponent implements OnInit {
     return this.institutionsService.getCRPS()
       .subscribe(
         res => {
-          // console.log(res);
-          this.crps = res;
+          this.crps = res.filter(crp => crp.cgiarEntityTypeDTO.code == 1 || crp.cgiarEntityTypeDTO.code == 3);
+          this.spinner.hide();
+          // console.log(res, this.crps);
         },
         error => {
           console.error("getCRPS", error);
+          this.spinner.hide();
+          this.alert.error(error)
         },
       )
   }
-
 
 }
