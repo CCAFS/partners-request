@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InstitutionsService } from '../services/institutions.service';
 
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-manage-partners',
   templateUrl: './manage-partners.component.html',
@@ -26,6 +28,9 @@ export class ManagePartnersComponent implements OnInit {
   isCollapsed = false;
   crps = [];
   requestedPartners = [];
+  faCheck = faCheck;
+  faTimes = faTimes;
+  selectedCRP = '';
 
 
   constructor(private institutionsService: InstitutionsService) { }
@@ -51,7 +56,8 @@ export class ManagePartnersComponent implements OnInit {
   * ** API calls
   */
   getResquestPartners() {
-    this.institutionsService.listRequestedPartners(this.acceptanceForm.value.crp)
+    this.selectedCRP = this.acceptanceForm.value.crp;
+    this.institutionsService.listRequestedPartners(this.selectedCRP)
       .subscribe(
         res => {
           console.log(res);

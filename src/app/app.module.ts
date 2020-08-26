@@ -8,7 +8,8 @@ import { ManagePartnersComponent } from './manage-partners/manage-partners.compo
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BasicAuthInterceptor } from './_helpers/basic-auth.interceptor';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { NgPipesModule } from 'ngx-pipes';
 
@@ -25,7 +26,8 @@ import { NgPipesModule } from 'ngx-pipes';
     HttpClientModule,
     NgPipesModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

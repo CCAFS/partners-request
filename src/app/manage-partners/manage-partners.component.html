@@ -12,7 +12,7 @@
                 </ol>
                 <div class="row justify-content-center">
                     <a data-toggle="collapse" href="#collapseRules" role="button" aria-expanded="false"
-                        aria-controls="collapseRules" (click)="isCollapsed = !isCollapsed">
+                        aria-controls="collapseRules" class="see-more" (click)="isCollapsed = !isCollapsed">
                         {{(isCollapsed) ? 'Collapse': 'See more'}}
                     </a>
                 </div>
@@ -20,7 +20,8 @@
         </div>
 
     </div>
-    <h3 class="row col">Requested institutions</h3>
+    <h3 class="row col subtitle">Requested institutions</h3>
+
     <div class="col">
         <form class="col" *ngIf="crps.length > 0" [formGroup]="acceptanceForm" (ngSubmit)="submit()">
 
@@ -40,25 +41,44 @@
         </form>
     </div>
     <div class="row col">
-        <div class="col-12 partner-container" *ngFor="let partner of requestedPartners">
-            <h2>{{(partner.acronym) ? partner.acronym + ' - ': ''}} {{partner.partnerName}}</h2>
-            <div *ngIf="partner.webPage">
-                ( <a href="{{partner.webPage}}" target="_blank">{{partner.webPage}}</a>)
-            </div>
-            <hr>
-            <span class="row col-12 info-row">Type: <p>{{partner.institutionTypeDTO.name}}</p></span>
-            <span class="row col-12 info-row">Country: <p>{{partner.countryDTO.name}}</p></span>
-            <span class="row col-12 info-row">Requested Source: <p>{{partner.institutionTypeDTO.name}}</p></span>
-            <!-- <span>CRP: <p>{{f.crp | json}}</p></span> -->
-            <span class="row col-12 info-row">Requested by: <p>{{partner.externalUserName}} {{partner.externalUserMail}}
-                </p></span>
-            <!-- <span>Active since: <p>{{partner.institutionTypeDTO.name)}}</p></span> -->
+        <div class="col-12 partner-container" *ngIf="requestedPartners.length > 0">
+            <ng-template *ngFor="let partner of requestedPartners">
+
+                <h2>{{(partner.acronym) ? partner.acronym + ' - ': ''}} {{partner.partnerName}}</h2>
+                <div *ngIf="partner.webPage">
+                    ( <a href="{{partner.webPage}}" target="_blank">{{partner.webPage}}</a>)
+                </div>
+                <hr>
+
+                <span class="row col-12 info-row info-row-type">Type: <p>{{partner.institutionTypeDTO.name}}</p></span>
+                <span class="row col-12 info-row info-row-country">Country: <span
+                        class="flag-icon flag-icon-{{partner.countryDTO.isoAlpha2.toLowerCase()}}"></span>
+                    <p>{{partner.countryDTO.name}}</p>
+                </span>
+                <span class="row col-12 info-row info-row-source">Requested Source: <p>
+                        {{partner.institutionTypeDTO.name}}
+                    </p></span>
+                <span class="row col-12 info-row info-row-user">Requested by: <p>{{partner.externalUserName}}
+                        {{ '<' +  partner.externalUserMail + '>'}}
+                    </p></span>
 
 
-            <div class="row justify-content-end">
-                <button type="button" class="btn btn-success">Approve</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-            </div>
+                <div class="row justify-content-end">
+                    <button type="button" class="btn btn-success">
+                        <fa-icon [icon]="faCheck"></fa-icon>
+                        Approve
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <fa-icon [icon]="faTimes"></fa-icon>
+                        Reject
+                    </button>
+                </div>
+            </ng-template>
+        </div>
+        <div class="col-12" *ngIf="requestedPartners.length == 0">
+            <h2>
+                None Partner Request for {{selectedCRP}}
+            </h2>
         </div>
     </div>
 </div>
