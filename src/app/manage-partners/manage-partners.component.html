@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Manage Partners</h2>
+    <h2>Manage Institutions</h2>
 
     <div class="form-container">
         <div class="col">
@@ -78,7 +78,7 @@
         </div>
         <div class="col-12" *ngIf="requestedPartners.length == 0 && selectedCRP != ''">
             <h2>
-                None Partner Request for {{selectedCRP}}
+                None Institution Request for {{selectedCRP}}
             </h2>
         </div>
     </div>
@@ -91,14 +91,14 @@
 
     <ng-template #content let-modal>
         <div class="modal-header">
-            <h3 class="modal-title" id="modal-basic-title">Reject Partner {{selectedPartner.partnerName}}?</h3>
+            <h3 class="modal-title" id="modal-basic-title">Reject Institution {{selectedPartner.partnerName}}?</h3>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <form [formGroup]="rejectionForm">
-                <textarea style="width: 100%;" name = "justification" placeholder="Why you want to reject this partner?" formControlName="justification" ></textarea>
+                <textarea style="width: 100%;" name = "justification" placeholder="Why you want to reject this institution?" formControlName="justification" ></textarea>
             </form>
         </div>
         <div class="modal-footer">

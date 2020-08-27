@@ -6,7 +6,7 @@ import { ManagePartnersComponent } from './manage-partners/manage-partners.compo
 
 const routes: Routes = [
   { path: 'new-institution', component: NewInstitutionComponent },
-  { path: 'manage-partners', component: ManagePartnersComponent },
+  { path: 'manage-institutions', component: ManagePartnersComponent },
   { path: '',   redirectTo: '/new-institution', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
