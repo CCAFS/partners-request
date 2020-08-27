@@ -14,30 +14,30 @@ export class InstitutionsService {
   /**
    * 
    */
-  getInstitutionsTypes(){
+  getInstitutionsTypes() {
     return this.http.get<any>(`${environment.apiUrl}/institution-types`);
   }
 
   /**
    * 
    */
-  getCountries(){
+  getCountries() {
     return this.http.get<any>(`${environment.apiUrl}/countries`);
   }
-  
+
   /**
    * 
    */
-  getCRPS(){
+  getCRPS() {
     return this.http.get<any>(`${environment.apiUrl}/cgiar-entities`);
   }
-  
+
   /**
    * 
    * @param cgiar_entity entity acronym
    * @param params 
    */
-  createPartner(cgiar_entity, params){
+  createPartner(cgiar_entity, params) {
     return this.http.post<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/institution-requests`, params);
   }
 
@@ -45,17 +45,17 @@ export class InstitutionsService {
    * 
    * @param cgiar_entity entity acronym
    */
-  listRequestedPartners(cgiar_entity){
-    return this.http.get<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/institution-all-requests}`);
+  listRequestedPartners(cgiar_entity) {
+    return this.http.get<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/institution-all-requests`);
   }
 
-   /**
-   * 
-   * @param cgiar_entity entity acronym
-   * @param params 
-   */
-  managePartnerRequest(cgiar_entity, params){
-    return this.http.post<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/accept-institution-request`, params);
+  /**
+  * 
+  * @param cgiar_entity entity acronym
+  * @param params 
+  */
+  managePartnerRequest(cgiar_entity, params) {
+    return this.http.post<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/accept-institution-request/${params.code}?justification=${params.justification}&accept=${params.accept}`, params);
   }
 
 

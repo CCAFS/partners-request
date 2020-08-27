@@ -88,6 +88,7 @@ export class ManagePartnersComponent implements OnInit {
                 console.log(res);
                 this.spinner.hide();
                 this.alert.success(`${res.partnerName} is ${res.requestStatus.toLowerCase()}.`);
+                this.getResquestPartners();
               },
               error => {
                 this.spinner.hide();
