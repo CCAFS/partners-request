@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host=0.0.0.0 --port=4100 --disable-host-check",
-    "dev": "forever start node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 4100",
+    "dev": "forever start node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 4100 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
