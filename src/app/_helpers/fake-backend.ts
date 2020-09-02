@@ -4,8 +4,8 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 let users = [
-    { email: 'yamit@cgiar.org', password: 'CNkzymx6', id: 1, firstName:'Yamit', lastName:'Test' },
-    { email: 'andres@gmail.com', password: '5hR9wyMN', id: 2, firstName:'Andres', lastName:'Test' },
+    { email: 'yamit.huertas@gmail.com', password: 'CNkzymx6', id: 1, firstName:'Yamit', lastName:'Test' },
+    { email: 'andresbranbury@gmail.com', password: '5hR9wyMN', id: 2, firstName:'Andres', lastName:'Test' },
 ];
 
 @Injectable()
