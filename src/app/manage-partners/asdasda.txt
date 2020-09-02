@@ -1,8 +1,0 @@
-asdasda
-forever start -c "npm start" .
-forever start -c "npm run dev" .
-
-
-is not a n official institution. Please confirm institution name and location.
-
-D:\DEV\partners-request\dist\partners-request\index.html

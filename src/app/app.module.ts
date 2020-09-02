@@ -16,13 +16,16 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 import { NgPipesModule } from 'ngx-pipes';
 import { AlertComponent } from './_shared/alert/alert.component';
+import { fakeBackendProvider } from './_helpers/fake-backend';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewInstitutionComponent,
     ManagePartnersComponent,
-    AlertComponent
+    AlertComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { AlertComponent } from './_shared/alert/alert.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -30,7 +30,7 @@
                     <label for="type" class="required">Acronym of CGIAR entity:</label>
                     <select formControlName="crp" #crp class="form-control" (change)="changeCRP(crp.value, 'crp')">
                         <option selected disabled>Select Crp</option>
-                        <option *ngFor="let crp of crps | orderBy:'name'" [value]="crp.acronym">{{crp.name}}</option>
+                        <option *ngFor="let crp of crps | orderBy:'acronym'" [value]="crp.acronym">{{crp.acronym}}</option>
                     </select>
                     <div *ngIf="f.crp.touched && f.crp.invalid" class="alert alert-danger">
                         <div *ngIf="f.crp.errors.required">Acronym of CGIAR entity is required.</div>

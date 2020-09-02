@@ -85,8 +85,8 @@ export class ManagePartnersComponent implements OnInit {
           this.institutionsService.managePartnerRequest(this.selectedCRP, params)
             .subscribe(
               res => {
-                console.log(res);
-                this.spinner.hide();
+                // console.log(res);
+                // this.spinner.hide();
                 this.alert.success(`${res.partnerName} is ${res.requestStatus.toLowerCase()}.`);
                 this.getResquestPartners();
               },
@@ -111,7 +111,7 @@ export class ManagePartnersComponent implements OnInit {
       .subscribe(
         res => {
           this.requestedPartners = res;
-          console.log(this.requestedPartners);
+          // console.log(this.requestedPartners);
           this.spinner.hide();
           // this.resetValues()
         },

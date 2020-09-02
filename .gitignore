@@ -47,3 +47,6 @@ Thumbs.db
 
 /proxy.conf.json
 ./proxy.conf.json
+
+/no-upload.txt
+./no-upload.txt

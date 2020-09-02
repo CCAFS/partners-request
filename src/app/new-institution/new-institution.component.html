@@ -1,6 +1,27 @@
 <div class="container">
+
+
+
+
     <h2>Request New Institution</h2>
     <div class="row form-container">
+
+        <div class="information-container">
+            <ol>
+                <li *ngFor="let rule of rules | slice:0:3; let i = index">{{rule.text}}</li>
+                <div class="collapse" id="collapseRules">
+                    <li *ngFor="let rule of rules | slice:4:8; let i = index">{{rule.text}}</li>
+                </div>
+            </ol>
+            <div class="row justify-content-center">
+                <a data-toggle="collapse" href="#collapseRules" role="button" aria-expanded="false"
+                    aria-controls="collapseRules" class="see-more" (click)="isCollapsed = !isCollapsed">
+                    {{(isCollapsed) ? 'Collapse': 'See more'}}
+                </a>
+            </div>
+        </div>
+
+
         <form class="col" [formGroup]="form" (ngSubmit)="submit()">
 
             <div class="row ">
@@ -38,7 +59,7 @@
                     <label for="type" class="required">Acronym of CGIAR entity:</label>
                     <select formControlName="crp" #crp class="form-control" (change)="changeWebsite(crp.value, 'crp')">
                         <option selected disabled>Select Crp</option>
-                        <option *ngFor="let crp of crps | orderBy:'name'" [value]="crp.acronym">{{crp.name}}</option>
+                        <option *ngFor="let crp of crps | orderBy:'acronym'" [value]="crp.acronym">{{crp.acronym}}</option>
                     </select>
                     <div *ngIf="f.crp.touched && f.crp.invalid" class="alert alert-danger">
                         <div *ngIf="f.crp.errors.required">Acronym of CGIAR entity is required.</div>
@@ -91,6 +112,78 @@
         </form>
 
     </div>
+    <!-- 
+
+        **** Modal ****
+
+     -->
+    <ng-template #institutionResponse let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Institution {{institution_requested.partnerName}} requested
+            </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row justify-content-between">
+                    <div class="form-group col-4">
+                        <label for="name">Id:</label>
+                        <input class="form-control" type="text" placeholder="{{institution_requested.id}} " readonly>
+                    </div>
+                    <div class="form-group col-8">
+                        <label for="acronym">Acronym:</label>
+                        <input class="form-control" type="text" placeholder="{{institution_requested.acronym}} "
+                            readonly>
+                    </div>
+
+                </div>
+
+                <div *ngIf="institution_requested.institutionDTO" class="row">
+                    <div class="form-group col">
+                        <label for="type">Acronym of CGIAR entity:</label>
+                        <input class="form-control" type="text"
+                            placeholder="{{institution_requested.institutionDTO.acronym}} " readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="type">Type:</label>
+                        <input class="form-control" type="text"
+                            placeholder="{{institution_requested.institutionTypeDTO.name}} " readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="headquarter">Headquarter country:</label>
+                        <input class="form-control" type="text" placeholder="{{institution_requested.countryDTO.name}} "
+                            readonly>
+                    </div>
+                </div>
+                <div *ngIf="institution_requested.webPage" class="row">
+                    <div class="form-group col">
+                        <label for="website">Website:</label>
+                        <input class="form-control" type="text" placeholder="{{institution_requested.webPage}} "
+                            readonly>
+                    </div>
+                </div>
+
+                <div *ngIf="institution_requested.externalUserMail" class="row justify-content-between">
+                    <div class="form-group col-4">
+                        <label for="name">Requested by:</label>
+                        <input class="form-control" type="text" placeholder="{{institution_requested.externalUserName}} " readonly>
+                    </div>
+                    <div class="form-group col-8">
+                        <label for="acronym">Email:</label>
+                        <input class="form-control" type="text" placeholder="{{institution_requested.externalUserMail}} "
+                            readonly>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </ng-template>
     <!-- 
 
         **** Spinner ****
