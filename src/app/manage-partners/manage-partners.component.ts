@@ -38,7 +38,7 @@ export class ManagePartnersComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
   selectedCRP = '';
-  selectedPartner = '';
+  selectedPartner;
   closeResult = '';
 
 

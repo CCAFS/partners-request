@@ -9,7 +9,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let oa =  `${environment.app_user}:${environment.app_password}`
+        let oa =  `${environment['app_user']}:${environment['app_password']}`
         request = request.clone({
             setHeaders: {
                 Authorization: `Basic ${window.btoa(oa)}`

@@ -15,21 +15,21 @@ export class InstitutionsService {
    * 
    */
   getInstitutionsTypes() {
-    return this.http.get<any>(`${environment.apiUrl}/institution-types`);
+    return this.http.get<any>(`${environment['apiUrl']}/institution-types`);
   }
 
   /**
    * 
    */
   getCountries() {
-    return this.http.get<any>(`${environment.apiUrl}/countries`);
+    return this.http.get<any>(`${environment['apiUrl']}/countries`);
   }
 
   /**
    * 
    */
   getCRPS() {
-    return this.http.get<any>(`${environment.apiUrl}/cgiar-entities`);
+    return this.http.get<any>(`${environment['apiUrl']}/cgiar-entities`);
   }
 
   /**
@@ -38,7 +38,7 @@ export class InstitutionsService {
    * @param params 
    */
   createPartner(cgiar_entity, params) {
-    return this.http.post<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/institution-requests`, params);
+    return this.http.post<any>(`${environment['apiUrl']}/${cgiar_entity}/institutions/institution-requests`, params);
   }
 
   /**
@@ -46,7 +46,7 @@ export class InstitutionsService {
    * @param cgiar_entity entity acronym
    */
   listRequestedPartners(cgiar_entity) {
-    return this.http.get<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/institution-all-requests`);
+    return this.http.get<any>(`${environment['apiUrl']}/${cgiar_entity}/institutions/institution-all-requests`);
   }
 
   /**
@@ -55,7 +55,7 @@ export class InstitutionsService {
   * @param params 
   */
   managePartnerRequest(cgiar_entity, params) {
-    return this.http.post<any>(`${environment.apiUrl}/${cgiar_entity}/institutions/accept-institution-request/${params.code}?justification=${params.justification}&accept=${params.accept}`, params);
+    return this.http.post<any>(`${environment['apiUrl']}/${cgiar_entity}/institutions/accept-institution-request/${params.code}?justification=${params.justification}&accept=${params.accept}`, params);
   }
 
 

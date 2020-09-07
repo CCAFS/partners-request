@@ -39,10 +39,11 @@ export class NewInstitutionComponent implements OnInit {
     crp: new FormControl('', [Validators.required]),
     website: new FormControl('', Validators.pattern(this.reg))
   });
+  isCollapsed = false;
   insTypes = [];
   countries = [];
   crps = [];
-  institution_requested = [];
+  institution_requested;
   currentUser = this.authenticationService.currentUserValue;
 
   constructor(private institutionsService: InstitutionsService,
@@ -74,7 +75,7 @@ export class NewInstitutionComponent implements OnInit {
         "hqCountryIso": this.form.value.headquarter,
         "externalUserMail": this.currentUser.email,
         "externalUserName": this.currentUser.firstName,
-        "externalUserComments": environment.default_user.comments
+        "externalUserComments": environment['default_user'].comments
       }
       // console.log(params, this.form.value)
       this.institutionsService.createPartner(this.form.value.crp, params)
