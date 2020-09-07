@@ -50,3 +50,5 @@ Thumbs.db
 
 /no-upload.txt
 ./no-upload.txt
+
+*.sample
