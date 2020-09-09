@@ -51,4 +51,6 @@ Thumbs.db
 /no-upload.txt
 ./no-upload.txt
 
-*.sample
+
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
