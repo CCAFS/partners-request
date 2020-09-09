@@ -14,6 +14,12 @@ export class InstitutionsService {
   /**
    * 
    */
+  getInstitutions() {
+    return this.http.get<any>(`${environment['apiUrl']}/institutions`);
+  }
+  /**
+   * 
+   */
   getInstitutionsTypes() {
     return this.http.get<any>(`${environment['apiUrl']}/institution-types`);
   }

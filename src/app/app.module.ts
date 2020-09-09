@@ -18,6 +18,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { AlertComponent } from './_shared/alert/alert.component';
 import { fakeBackendProvider } from './_helpers/fake-backend';
 import { LoginComponent } from './login/login.component';
+import { NgbdSortableHeader } from './services/sortable.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     NewInstitutionComponent,
     ManagePartnersComponent,
     AlertComponent,
-    LoginComponent
+    LoginComponent,
+    NgbdSortableHeader
   ],
   imports: [
     BrowserModule,

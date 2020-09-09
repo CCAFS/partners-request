@@ -1,5 +1,11 @@
 <div class="container">
-    <h2>Manage Institutions</h2>
+    <div class="row col">
+        <h2 class="col">Manage Institutions</h2>
+        <div class="row all-institutions-btn align-self-center" (click)="openAllInstitutions(allInstitutions)">
+            <fa-icon [icon]="faList"></fa-icon>
+            <p class="col">All institutions & location offices</p>
+        </div>
+    </div>
 
     <div class="form-container">
         <div class="col">
@@ -30,7 +36,8 @@
                     <label for="type" class="required">Acronym of CGIAR entity:</label>
                     <select formControlName="crp" #crp class="form-control" (change)="changeCRP(crp.value, 'crp')">
                         <option selected disabled>Select Crp</option>
-                        <option *ngFor="let crp of crps | orderBy:'acronym'" [value]="crp.acronym">{{crp.acronym}}</option>
+                        <option *ngFor="let crp of crps | orderBy:'acronym'" [value]="crp.acronym">{{crp.acronym}}
+                        </option>
                     </select>
                     <div *ngIf="f.crp.touched && f.crp.invalid" class="alert alert-danger">
                         <div *ngIf="f.crp.errors.required">Acronym of CGIAR entity is required.</div>
@@ -98,7 +105,8 @@
         </div>
         <div class="modal-body">
             <form [formGroup]="rejectionForm">
-                <textarea style="width: 100%;" name = "justification" placeholder="Why you want to reject this institution?" formControlName="justification" ></textarea>
+                <textarea style="width: 100%;" name="justification"
+                    placeholder="Why you want to reject this institution?" formControlName="justification"></textarea>
             </form>
         </div>
         <div class="modal-footer">
@@ -108,10 +116,78 @@
         </div>
     </ng-template>
 
+
+    <ng-template #allInstitutions let-modal>
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-basic-title">All institutions & location offices</h3>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <form class="row col justify-content-between">
+                    <div>
+                        Show:
+                        <select class="custom-select" style="width: auto" name="pageSize"
+                            [(ngModel)]="locationsService.pageSize">
+                            <option [ngValue]="10">10</option>
+                            <option [ngValue]="20">20</option>
+                            <option [ngValue]="50">50</option>
+                        </select>
+                        entries
+                    </div>
+                    <div class="form-group form-inline">
+                        Search: <input class="form-control ml-2" type="text" name="searchTerm"
+                            [(ngModel)]="locationsService.searchTerm" />
+                        <span class="ml-3" *ngIf="locationsService.loading$ | async">Loading...</span>
+                    </div>
+                </form>
+            </div>
+            <form>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" sortable="code" (sort)="onSort($event)">ID</th>
+                            <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+                            <th scope="col" sortable="institutionType" (sort)="onSort($event)">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let institution of institution$ | async">
+                            <th scope="row">{{ institution.code }}</th>
+                            <td>
+                                <ngb-highlight [result]="institution.name" [term]="locationsService.searchTerm">
+                                </ngb-highlight>
+                                <div>
+                                    <span class="flag-icon flag-icon-{{cdto.isoAlpha2.toLowerCase()}}"
+                                        style="padding: 0 15px;"
+                                        *ngFor="let cdto of institution.countryOfficeDTO"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="institution.institutionType.name"
+                                    [term]="locationsService.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="(total$ | async)!" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" [(page)]="locationsService.page" [pageSize]="locationsService.pageSize">
+                    </ngb-pagination>
+                </div>
+
+            </form>
+        </div>
+    </ng-template>
+
     <!-- 
 
         **** Spinner ****
 
      -->
-     <ngx-spinner></ngx-spinner>
+    <ngx-spinner></ngx-spinner>
 </div>

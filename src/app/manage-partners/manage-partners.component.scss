@@ -9,9 +9,14 @@
     color: var(--blue-tertiary);
 }
 
-// .container{
-//     font-size: larger;
-// }
+.all-institutions-btn{
+    padding: 10px;
+    border: 1px solid grey;
+    cursor: pointer;
+    p{
+        margin: 0;
+    }
+}
 
 .partner-container {
     border: 1px solid var(--gray-secondary);

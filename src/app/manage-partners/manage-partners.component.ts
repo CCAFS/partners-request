@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InstitutionsService } from '../services/institutions.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes, faList } from '@fortawesome/free-solid-svg-icons';
 import { AlertService } from '../services/alert.service';
+import { DecimalPipe } from '@angular/common';
+import { InstitutionsLocationsService } from '../services/institutions-locations.service';
+import { Observable } from 'rxjs';
+import { NgbdSortableHeader, SortEvent } from '../services/sortable.directive';
+
 
 @Component({
   selector: 'app-manage-partners',
   templateUrl: './manage-partners.component.html',
-  styleUrls: ['./manage-partners.component.scss']
+  styleUrls: ['./manage-partners.component.scss'],
+  providers: [InstitutionsLocationsService, DecimalPipe]
 })
 export class ManagePartnersComponent implements OnInit {
 
@@ -35,17 +41,29 @@ export class ManagePartnersComponent implements OnInit {
   isCollapsed = false;
   crps = [];
   requestedPartners = [];
-  faCheck = faCheck;
-  faTimes = faTimes;
   selectedCRP = '';
   selectedPartner;
   closeResult = '';
+  /*** icons ***/
+  faCheck = faCheck;
+  faTimes = faTimes;
+  faList = faList;
+
+  institution$: Observable<any[]>;
+  total$: Observable<number>;
+
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>
+
 
 
   constructor(private institutionsService: InstitutionsService,
     private modalService: NgbModal,
     private alert: AlertService,
-    private spinner: NgxSpinnerService) { }
+    public locationsService: InstitutionsLocationsService,
+    private spinner: NgxSpinnerService) {
+    this.institution$ = locationsService.institutions$;
+    this.total$ = locationsService.total$;
+  }
 
   ngOnInit() {
     this.spinner.show();
@@ -59,6 +77,18 @@ export class ManagePartnersComponent implements OnInit {
   changeCRP(e, prop?) {
     this.spinner.show();
     this.getResquestPartners();
+  }
+
+  onSort({ column, direction }: SortEvent) {
+    // resetting other headers
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+    });
+
+    this.locationsService.sortColumn = column;
+    this.locationsService.sortDirection = direction;
   }
 
 
@@ -100,6 +130,17 @@ export class ManagePartnersComponent implements OnInit {
       }, (reason) => {
         this.resetValues();
       });
+  }
+
+  openAllInstitutions(institutionsModal) {
+    this.modalService.open(institutionsModal, { size: 'lg', ariaLabelledBy: 'modal-basic-title' })
+      .result.then((result) => {
+        if (result === 'ok clicked') {
+        }
+      }, (reason) => {
+        console.log('reason >', reason)
+      });
+
   }
 
   /**
