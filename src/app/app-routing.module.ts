@@ -1,8 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NewInstitutionComponent } from './new-institution/new-institution.component';
+import { ManagePartnersComponent } from './manage-partners/manage-partners.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_helpers/auth.guard';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'new-institution', component: NewInstitutionComponent, canActivate: [AuthGuard]},
+  { path: 'manage-institutions', component: ManagePartnersComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: '',   redirectTo: '/new-institution', pathMatch: 'full' },
+  // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

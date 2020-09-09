@@ -44,5 +44,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/no-upload.txt
+
 /proxy.conf.json
+./proxy.conf.json
+
+/no-upload.txt
+./no-upload.txt
+
+
+/src/environments/environment.ts
+/src/environments/environment.prod.ts

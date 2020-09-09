@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/flag-icon-css/css/flag-icon.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -67,7 +72,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "partners-request:build"
+            "browserTarget": "partners-request:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -124,6 +130,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "partners-request"
 }

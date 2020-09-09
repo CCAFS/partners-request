@@ -1,0 +1,56 @@
+:root {
+    --background: #f3f1f1;
+    --background-contrast: #f3f3f3ff;
+
+    --white: #fff;
+
+    --black: #000;
+    --black-lighter: #434343;
+
+    --input-gray: #f2f2f2;
+
+    --active-blue: #1da5ce;
+    --blue-primary: #0f647e;
+    --blue-secondary: #0097a7;
+    --blue-tertiary: #6d9eeb;
+    // --yellow-primary: #ffc84f;
+    // --yellow-secondary: #ffca30;
+    // --green-primary: #2e7636;
+    // --green-secondary: #61b33e;
+    // --green-tertiary: #67be71;
+    // --green-tertiary: #DCECDF;
+    --gray-primary: #e1dddd;
+    --gray-secondary: #cccccc;
+    --gray-tertiary: #989898;
+    // --red-primary: #da4336;
+    // --red-secondary: #b73428;
+    // --red-tertiary: #F1B7B7;
+    // --blue-primary: #0f8981;
+    // --blue-secondary: #17a2b8;
+}
+
+// primary font
+$primary_font: "BalooTamma2";
+
+//   $navbar-light-color:
+// font-weight
+$thin: 100;
+$light: 300;
+$regular: 400;
+$bold: 700;
+$black: 900;
+// Font size
+$font-xs: 12px;
+$font-sm: 14px;
+$primary-fs: 16px;
+$font-md: 20px;
+$font-lg: 35px;
+// icon
+$icon-sm: 20px;
+$icon-md: 30px;
+$icon-lg: 50px;
+// sizes (icons, progress bar..)
+$size-sm: 10px;
+$size-md: 20px;
+$size-25: 25px;
+$size-lg: 30px;

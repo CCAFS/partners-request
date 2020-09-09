@@ -1,0 +1,58 @@
+@import "../../assets/variables.scss";
+
+.subtitle {
+    color: var(--blue-primary);
+    margin: 2em 0 1em;
+}
+
+.see-more {
+    color: var(--blue-tertiary);
+}
+
+.all-institutions-btn{
+    padding: 10px;
+    border: 1px solid grey;
+    cursor: pointer;
+    p{
+        margin: 0;
+    }
+}
+
+.partner-container {
+    border: 1px solid var(--gray-secondary);
+    margin: 5px 10px;
+    border-radius: 5px;
+    hr {
+        margin: 0.5em 0 1em;
+    }
+    h2 {
+        margin: 25px 0 5px;
+        font-size: 2em;
+        line-height: 1;
+        color: var(--black-lighter);
+    }
+    a {
+        color: var(--blue-secondary);
+    }
+
+    .justify-content-end {
+        button {
+            margin: 10px;
+        }
+    }
+
+    .info-row {
+        font-weight: bold;
+        font-size: larger;
+        color: var(--black-lighter);
+        margin: 10px 0;
+        padding: 0;
+        p {
+            font-weight: 300;
+            margin: 0 5px;
+        }
+        .flag-icon {
+            margin: auto 2px;
+        }
+    }
+}
