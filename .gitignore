@@ -2,3 +2,7 @@ node_modules
 /proxy.conf.json
 /no-upload.txt
 /dist
+/no-upload.txt
+/dist
+/node_modules
+/proxy.conf.json
