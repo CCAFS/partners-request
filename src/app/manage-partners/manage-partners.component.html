@@ -73,7 +73,7 @@
 
                 <div class="row justify-content-end">
                     <button type="button" class="btn btn-success">
-                        <fa-icon [icon]="faCheck"></fa-icon>
+                        <fa-icon [icon]="faCheck" (click)="acceptRequest(partner)"></fa-icon>
                         Approve
                     </button>
                     <button type="button" class="btn btn-danger" (click)="open(content, partner)">
