@@ -132,7 +132,29 @@ export class ManagePartnersComponent implements OnInit {
       });
   }
 
+  acceptRequest(partner) {
+    this.spinner.show()
+    let params = {
+      "code": partner['id'],
+      "accept": true,
+    }
+    this.institutionsService.managePartnerRequest(this.selectedCRP, params)
+      .subscribe(
+        res => {
+          this.spinner.hide();
+          this.alert.success(`${res.partnerName} is ${res.requestStatus.toLowerCase()}.`);
+          this.getResquestPartners();
+        },
+        error => {
+          this.spinner.hide();
+          console.error("reject partner request ", error);
+          this.alert.error(`${error.status} : ${error.statusText}.`)
+        },
+      )
+  }
+
   openAllInstitutions(institutionsModal) {
+    this.institution$ = this.locationsService.institutions$;
     this.modalService.open(institutionsModal, { size: 'lg', ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
         if (result === 'ok clicked') {
