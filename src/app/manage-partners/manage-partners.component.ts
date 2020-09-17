@@ -133,7 +133,6 @@ export class ManagePartnersComponent implements OnInit {
   }
 
   acceptRequest(partner) {
-    console.log(partner)
     this.spinner.show()
     let params = {
       "code": partner['id'],
@@ -142,7 +141,6 @@ export class ManagePartnersComponent implements OnInit {
     this.institutionsService.managePartnerRequest(this.selectedCRP, params)
       .subscribe(
         res => {
-          console.log(res);
           this.spinner.hide();
           this.alert.success(`${res.partnerName} is ${res.requestStatus.toLowerCase()}.`);
           this.getResquestPartners();
