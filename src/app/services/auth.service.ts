@@ -47,4 +47,5 @@ export class User {
   firstName: string;
   lastName: string;
   token: string;
+  expiresIn: string;
 }

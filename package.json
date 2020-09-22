@@ -29,6 +29,7 @@
     "bootstrap": "^4.5.2",
     "flag-icon-css": "^3.5.0",
     "jquery": "^3.5.1",
+    "moment": "^2.29.0",
     "ngx-pipes": "^2.7.5",
     "ngx-spinner": "^8.1.0",
     "rxjs": "~6.4.0",
