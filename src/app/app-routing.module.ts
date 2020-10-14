@@ -4,13 +4,15 @@ import { NewInstitutionComponent } from './new-institution/new-institution.compo
 import { ManagePartnersComponent } from './manage-partners/manage-partners.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
   { path: 'new-institution', component: NewInstitutionComponent, canActivate: [AuthGuard]},
   { path: 'manage-institutions', component: ManagePartnersComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '',   redirectTo: '/new-institution', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
 
