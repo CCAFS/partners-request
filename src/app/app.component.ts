@@ -15,6 +15,7 @@ export class AppComponent {
   title = 'partners-request';
   routerEventSubscription: any;
   activeNav = false;
+  activeTitle = false;
   faSignOutAlt = faSignOutAlt;
 
   constructor(
@@ -26,6 +27,7 @@ export class AppComponent {
     this.routerEventSubscription = this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.activeNav = val.url.indexOf('login') == 1 ? false : true;
+        this.activeTitle = val.url.indexOf('home') == 1 ? false : true;
       }
     });
   }

@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
 import { first } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,8 +23,10 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    
   ) {
+   
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -31,11 +34,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
-
+    
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/new-institution';
   }

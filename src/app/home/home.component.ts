@@ -28,18 +28,33 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
     private alert: AlertService,
     public locationsService: InstitutionsLocationsService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
     ) {
       this.institution$ = locationsService.institutions$;
-      this.institution$ = this.locationsService.institutions$;
       this.total$ = locationsService.total$;
-      this.institution$ = locationsService.institutions$;
-      this.institution$ = this.locationsService.institutions$;
-      this.total$ = locationsService.total$;
+
+      
   }
 
   ngOnInit() {
+ 
+    this.spinner.show();
+    if(!this.locationsService.institutionLoaded){
+    let interval = setInterval(()=>{ 
+      if(this.locationsService.institutionLoaded){
+        this.spinner.hide();
+        clearInterval(interval);
+      }
+      console.log("interval");
+     }, 1000);
+
+    }
+
   }
+
+
+
+
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
     // this.headers.forEach(header => {
