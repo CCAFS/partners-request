@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-bottom-shadow" *ngIf="activeNav">
-  <a class="navbar-brand mr-auto" href="/new-institution">Institutions Request</a>
+  <a class="navbar-brand mr-auto" href="/new-institution" *ngIf="activeTitle">Institutions Request</a>
+  <a class="navbar-brand mr-auto" href="/new-institution"*ngIf="!activeTitle" ></a>
+
+  
   <ul class="nav navbar-nav" routerLinkActive="active">
-    <li class="nav-item">
+    <li class="nav-item" >
       <a class="nav-link" routerLink="/new-institution" routerLinkActive="active">Request New
         Institution</a>
     </li>

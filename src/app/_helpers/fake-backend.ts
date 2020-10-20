@@ -3,6 +3,8 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
+import * as moment from 'moment';
+
 let users = [
     { email: 'yamit.huertas@gmail.com', password: 'CNkzymx6', id: 1, firstName:'Yamit', lastName:'Test' },
     { email: 'andresbranbury@gmail.com', password: '5hR9wyMN', id: 2, firstName:'Andres', lastName:'Test' },
@@ -44,36 +46,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                token: 'fake-jwt-token'
+                token: 'fake-jwt-token',
+                expiresIn: moment().add(30,'minutes').unix()
+                // .add('minutes', 30)
             })
         }
-
-        // function register() {
-        //     const user = body
-
-        //     if (users.find(x => x.username === user.username)) {
-        //         return error('Username "' + user.username + '" is already taken')
-        //     }
-
-        //     user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
-        //     users.push(user);
-        //     localStorage.setItem('users', JSON.stringify(users));
-
-        //     return ok();
-        // }
-
-        // function getUsers() {
-        //     if (!isLoggedIn()) return unauthorized();
-        //     return ok(users);
-        // }
-
-        // function deleteUser() {
-        //     if (!isLoggedIn()) return unauthorized();
-
-        //     users = users.filter(x => x.id !== idFromUrl());
-        //     localStorage.setItem('users', JSON.stringify(users));
-        //     return ok();
-        // }
 
         // helper functions
 
@@ -83,19 +60,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function error(message) {
             return throwError({ message });
-        }
-
-        function unauthorized() {
-            return throwError({ status: 401, message: 'Unauthorised'  });
-        }
-
-        function isLoggedIn() {
-            return headers.get('Authorization') === 'Bearer fake-jwt-token';
-        }
-
-        function idFromUrl() {
-            const urlParts = url.split('/');
-            return parseInt(urlParts[urlParts.length - 1]);
         }
     }
 }

@@ -47,7 +47,7 @@ export class InstitutionsLocationsService {
   private _total$ = new BehaviorSubject<number>(0);
 
   institutionsList = [];
-
+  institutionLoaded = false;
 
 
   private _state = {
@@ -69,6 +69,7 @@ export class InstitutionsLocationsService {
     ).subscribe(result => {
       this._institutions$.next(result.institutions);
       this._total$.next(result.total);
+      this.institutionLoaded = true;
     });
     this.institutionService.getInstitutions().subscribe(result => {
       this.institutionsList = result;

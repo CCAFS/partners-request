@@ -19,6 +19,7 @@ import { AlertComponent } from './_shared/alert/alert.component';
 import { fakeBackendProvider } from './_helpers/fake-backend';
 import { LoginComponent } from './login/login.component';
 import { NgbdSortableHeader } from './services/sortable.directive';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NgbdSortableHeader } from './services/sortable.directive';
     ManagePartnersComponent,
     AlertComponent,
     LoginComponent,
-    NgbdSortableHeader
+    NgbdSortableHeader,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

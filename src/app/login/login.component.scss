@@ -1,0 +1,50 @@
+.back-text {
+//   background-color: red;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0px 30px;
+  div {
+   
+    width: 30px;
+    height: 60px;
+    display: inline-block;
+    position: relative;
+
+    p {
+        filter: opacity(70%);
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+    //   background-color: rgb(29, 214, 60);
+      font-size: 25px;
+      font-weight: 500;
+
+      position: absolute;
+      transform: translateY(-50%);
+      top: 50%;
+    }
+    img {
+        filter: opacity(50%);
+        cursor: pointer;
+    //   display: inline-block;
+      width: 30px;
+      position: absolute;
+      transform: translateY(-50%);
+      top: 50%;
+    }
+  }
+}
+.icon-back {
+//   background-color: royalblue;
+}
+
+
+img:focus, p:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    outline: none !important;
+    box-shadow: none;
+  }
