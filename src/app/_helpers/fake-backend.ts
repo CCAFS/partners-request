@@ -11,6 +11,7 @@ let users = [
     { email: 'd.f.perez@cgiar.org', password: 'WG2hUVju', id: 2, firstName:'Diego', lastName:'Perez' },
     { email: 'f.elvira@cgiar.org', password: 'VCM7QcEc', id: 3, firstName:'Felipe', lastName:'Elvira' },
     { email: 'marlosupport@cgiar.org', password: 'Hv3QUAsK', id: 4, firstName:'Support', lastName:'Wildcard' },
+    { email: 'cristianmartin3090@gmail.com', password: 'Cv1AUAmY', id: 5, firstName:'Cristian', lastName:'Martin' },
 ];
 
 @Injectable()
