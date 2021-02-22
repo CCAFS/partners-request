@@ -8,10 +8,13 @@ import * as moment from 'moment';
 let users = [
     { email: 'yamit.huertas@gmail.com', password: 'CNkzymx6', id: 1, firstName:'Yamit', lastName:'Test' },
     { email: 'andresbranbury@gmail.com', password: '5hR9wyMN', id: 2, firstName:'Andres', lastName:'Test' },
-    { email: 'd.f.perez@cgiar.org', password: 'WG2hUVju', id: 2, firstName:'Diego', lastName:'Perez' },
     { email: 'f.elvira@cgiar.org', password: 'VCM7QcEc', id: 3, firstName:'Felipe', lastName:'Elvira' },
     { email: 'marlosupport@cgiar.org', password: 'Hv3QUAsK', id: 4, firstName:'Support', lastName:'Wildcard' },
     { email: 'cristianmartin3090@gmail.com', password: 'Cv1AUAmY', id: 5, firstName:'Cristian', lastName:'Martin' },
+    { email: 'derlynlourido@outlook.com', password: '27MVFd5R', id:6 , firstName:'Derlyn', lastName:'Lourido' },
+    { email: 'dani_madrid12@hotmail.com ', password: 'yUrMgjV7', id:7 , firstName:'Daniela', lastName:'Madrid' },
+    { email: 'sarama.duque@gmail.com', password: 'HMc8datA', id:8 , firstName:'Sara', lastName:'Duque' },
+    { email: 'd.f.perez@cgiar.org', password: 'WG2hUVju', id: 9, firstName:'Diego', lastName:'Perez' },
 ];
 
 @Injectable()
