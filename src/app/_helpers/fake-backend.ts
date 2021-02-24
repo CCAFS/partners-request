@@ -12,7 +12,7 @@ let users = [
     { email: 'marlosupport@cgiar.org', password: 'Hv3QUAsK', id: 4, firstName:'Support', lastName:'Wildcard' },
     { email: 'cristianmartin3090@gmail.com', password: 'Cv1AUAmY', id: 5, firstName:'Cristian', lastName:'Martin' },
     { email: 'derlynlourido@outlook.com', password: '27MVFd5R', id:6 , firstName:'Derlyn', lastName:'Lourido' },
-    { email: 'dani_madrid12@hotmail.com ', password: 'yUrMgjV7', id:7 , firstName:'Daniela', lastName:'Madrid' },
+    { email: 'dani_madrid12@hotmail.com', password: 'yUrMgjV7', id:7 , firstName:'Daniela', lastName:'Madrid' },
     { email: 'sarama.duque@gmail.com', password: 'HMc8datA', id:8 , firstName:'Sara', lastName:'Duque' },
     { email: 'd.f.perez@cgiar.org', password: 'WG2hUVju', id: 9, firstName:'Diego', lastName:'Perez' },
 ];
