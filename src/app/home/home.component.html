@@ -32,6 +32,7 @@
                         <th scope="col" sortable="code" (sort)="onSort($event)">ID</th>
                         <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
                         <th scope="col" sortable="institutionType" (sort)="onSort($event)">Type</th>
+                        <th scope="col" sortable="website" (sort)="onSort($event)">Website</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,9 +48,13 @@
                             </div>
                         </td>
                         <td>
+                           
                             <ngb-highlight [result]="institution.institutionType.name"
                                 [term]="locationsService.searchTerm">
                             </ngb-highlight>
+                        </td>
+                        <td>
+                            <a class="nav-link" href={{institution.websiteLink}} target="_blank">{{ institution.websiteLink }}</a>                                            
                         </td>
                     </tr>
                 </tbody>
