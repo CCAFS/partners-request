@@ -1,6 +1,7 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InstitutionsService } from '../services/institutions.service';
+import { ExcelService } from '../services/excel.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -21,10 +22,12 @@ import { NgbdSortableHeader, SortEvent } from '../services/sortable.directive';
 export class HomeComponent implements OnInit {
   institution$: Observable<any[]>;
   total$: Observable<number>;
+  
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>
   constructor(
     private institutionsService: InstitutionsService,
+    private excelService : ExcelService,
     private modalService: NgbModal,
     private alert: AlertService,
     public locationsService: InstitutionsLocationsService,
@@ -33,8 +36,26 @@ export class HomeComponent implements OnInit {
       this.institution$ = locationsService.institutions$;
       this.total$ = locationsService.total$;
 
-      
+
   }
+  exportAsXLSX():void {
+    this.spinner.show();
+    let data = [];
+      this.locationsService.institutionsList.forEach(element => {        
+        data.push( {
+          Id: element.code,
+          Name: element.name,
+          Acronym: element.acronym,
+          Type: element.institutionType.name,
+          Website : element.websiteLink
+          }); 
+          
+         
+    });
+    //console.log(data)    
+    this.excelService.exportAsExcelFile(data, 'InstitutionsList');
+    this.spinner.hide();
+ }
 
   ngOnInit() {
  

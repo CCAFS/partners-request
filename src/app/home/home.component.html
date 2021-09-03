@@ -7,8 +7,10 @@
     <div class="modal-body" style="position: relative">
         <div>
             <form class="row col justify-content-between">
+                
                 <div>
-                    Show:
+                    
+                                      Show:
                     <select class="custom-select" style="width: auto" name="pageSize"
                         [(ngModel)]="locationsService.pageSize">
                         <option [ngValue]="10">10</option>
@@ -20,13 +22,15 @@
                 <div class="form-group form-inline">
                     Search: <input class="form-control ml-2" type="text" name="searchTerm"
                         [(ngModel)]="locationsService.searchTerm" />
+                        
                     <span class="ml-3" *ngIf="locationsService.loading$ | async">Loading...</span>
                 </div>
             </form>
+            <button (click)="exportAsXLSX()" class="btn btn-success">Export</button> 
         </div>
         <form>
-
-            <table class="table table-striped">
+            
+            <table class="table table-striped" id="institutionsTable">
                 <thead>
                     <tr>
                         <th scope="col" sortable="code" (sort)="onSort($event)">ID</th>
