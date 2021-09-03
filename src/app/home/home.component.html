@@ -26,7 +26,10 @@
                     <span class="ml-3" *ngIf="locationsService.loading$ | async">Loading...</span>
                 </div>
             </form>
-            <button (click)="exportAsXLSX()" class="btn btn-success">Export</button> 
+            <button (click)="exportAsXLSX()" class="btn-export">
+                Export
+                <i class="icon-download"></i>
+            </button> 
         </div>
         <form>
             

@@ -1,0 +1,40 @@
+@import "../../assets/variables.scss";
+
+.btn-export{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #2EE59D;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 1em;
+    padding: 0.5em 1.5em;
+    i{
+        width: 18px;
+        fill: white;
+        margin-left: 1.5em;
+    }
+    // font-weight: 600;
+    &:hover{
+        background-color: #2EE59D;
+        box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+        color: #fff;
+        transform: translateY(-4px);
+    }
+}
+.icon-xlsx {
+    content: url("~/assets/svg/xlsx-icon.svg");
+  }
+.icon-download {
+    content: url("~/assets/svg/download-icon.svg");
+  }
