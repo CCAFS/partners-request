@@ -12,7 +12,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
         let oa =  `${environment['app_user']}:${environment['app_password']}`
         request = request.clone({
             setHeaders: {
-                Authorization: `Basic ${window.btoa(oa)}`
+                Authorization: `Basic `+ btoa(oa)
             }
         });
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 
@@ -44,7 +44,14 @@ export class InstitutionsService {
    * @param params 
    */
   createPartner(cgiar_entity, params) {
-    return this.http.post<any>(`${environment['apiUrl']}/${cgiar_entity}/institutions/institution-requests`, params);
+    let oa =  `${environment['app_user']}:${environment['app_password']}`
+    var httpHeaders = new HttpHeaders();
+    httpHeaders.append('Content-Type', 'application/json');
+    httpHeaders.append("Authorization", "Basic " + oa);
+    const httpOptions = {
+      headers: httpHeaders
+    };
+    return this.http.post<any>(`${environment['apiUrl']}/${cgiar_entity}/institutions/institution-requests`, params, httpOptions);
   }
 
   /**
