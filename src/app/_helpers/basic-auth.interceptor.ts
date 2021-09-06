@@ -8,10 +8,15 @@ import { environment } from '../../environments/environment';
 export class BasicAuthInterceptor implements HttpInterceptor {
     constructor() { }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {        
         let oa =  `${environment['app_user']}:${environment['app_password']}`
+
+        let requestOri = HttpRequest ;
+       
+        request.body
         request = request.clone({
-            setHeaders: {
+            setHeaders: {     
+                'Cache-Control': 'no-cache',          
                 Authorization: `Basic `+ btoa(oa)
             }
         });
