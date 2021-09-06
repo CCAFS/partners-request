@@ -9,11 +9,9 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {        
-        let oa =  `${environment['app_user']}:${environment['app_password']}`
-
-        let requestOri = HttpRequest ;
+        let oa =  `${environment['app_user']}:${environment['app_password']}`      
        
-        request.body
+        console.log('Intercerptor oa '+`${environment['app_user']}` )
         request = request.clone({
             setHeaders: {     
                 'Cache-Control': 'no-cache',          
