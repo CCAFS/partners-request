@@ -31,9 +31,24 @@ function sort(institutions: any[], column: string, direction: string): any[] {
 
 function matches(institution: [], term: string, pipe: PipeTransform) {
   return institution['name'].toLowerCase().includes(term.toLowerCase())
-    || institution['institutionType']['name'].toLowerCase().includes(term);
+    || institution['institutionType']['name'].toLowerCase().includes(term)
+    || (institution['acronym']==null?'':institution['acronym']).toLowerCase().includes(term)
+    || getHQName(institution['countryOfficeDTO'])['name'].toLowerCase().includes(term)
+    || getHQName(institution['countryOfficeDTO'])['isoAlpha2'].toLowerCase().includes(term)
+    || institution['code'].toString().includes(term.toLowerCase());
 }
 
+function getHQName(countries:[] ){
+  
+  let value = null
+  countries.forEach(country => {
+    if(country['isHeadquarter']==="true"){
+      value= country
+    }
+  }
+  );
+  return value;
+}
 
 
 @Injectable({

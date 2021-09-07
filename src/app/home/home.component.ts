@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
         this.spinner.hide();
         clearInterval(interval);
       }
-      console.log("interval");
+      //console.log("interval");
      }, 1000);
 
     }

@@ -38,6 +38,7 @@
                     <tr>
                         <th scope="col" sortable="code" (sort)="onSort($event)">ID</th>
                         <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+                        <th scope="col" sortable="name" (sort)="onSort($event)">Acronym</th>
                         <th scope="col" sortable="institutionType" (sort)="onSort($event)">Type</th>
                         <th scope="col" sortable="website" (sort)="onSort($event)">Website</th>
                     </tr>
@@ -54,6 +55,10 @@
                                     *ngFor="let cdto of institution.countryOfficeDTO"></span>
                             </div>
                         </td>
+                        <td>
+                            <ngb-highlight [result]="institution.acronym" [term]="locationsService.searchTerm">
+                            </ngb-highlight>
+                        </td> 
                         <td>
                            
                             <ngb-highlight [result]="institution.institutionType.name"
