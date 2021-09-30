@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
 import { first } from 'rxjs/operators';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthService,
     private alertService: AlertService,
-    
+    private http: HttpClient,
   ) {
    
     // redirect to home if already logged in
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(3)]]
     });
     
     // get return url from route parameters or default to '/'
@@ -61,7 +62,23 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.email.value, this.f.password.value)
+    this.authenticationService.loginAD(this.f.email.value, this.f.password.value).subscribe(
+      res => {
+        if(res.authenticated===true){
+          this.loading = false;
+          this.router.navigate([this.returnUrl]);
+        }else{
+          this.alertService.error('Invalid password');
+          this.loading = false;
+        }       
+      },error => {
+        console.log('onSubmit', error)
+        this.alertService.error('User not found');
+        this.loading = false;
+      });
+          
+    
+    /*this.authenticationService.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -71,6 +88,10 @@ export class LoginComponent implements OnInit {
           console.log('onSubmit', error)
           this.alertService.error(error.message);
           this.loading = false;
-        });
+        });*/
   }
+
+  
 }
+
+

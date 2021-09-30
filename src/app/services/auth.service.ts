@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,33 @@ export class AuthService {
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+  getUserAD(userEmail, userPassword){
+    let oa =  `${environment['app_user']}:${environment['app_password']}`
+    var httpHeaders = new HttpHeaders();
+    httpHeaders.append('Content-Type', 'application/json');
+    httpHeaders.append("Authorization", "Basic " + oa);
+    const httpOptions = {
+      headers: httpHeaders
+    };
+    let params= {
+      "email":userEmail,
+      "password": userPassword      
+    }
+    return this.http.post<any>(`${environment['apiUrl']}/UserAuthentication`,params, httpOptions);
+  }
+  loginAD(email, password){
+    return this.getUserAD(email,password).pipe(map((user:User) => { 
+      console.log(user.email)  
+      console.log(user.authenticated)
+      user.firstName   
+      user.token= 'fake-jwt-token'
+      user.expiresIn= moment().add(30,'minutes').unix()
+      delete user.password
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      this.currentUserSubject.next(user);
+      return user;
+    }));
   }
 
   login(email, password) {
@@ -47,5 +75,6 @@ export class User {
   firstName: string;
   lastName: string;
   token: string;
-  expiresIn: string;
+  expiresIn: number;
+  authenticated: boolean;
 }
