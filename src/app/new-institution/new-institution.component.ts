@@ -74,7 +74,7 @@ export class NewInstitutionComponent implements OnInit {
         "institutionTypeCode": this.form.value.type,
         "hqCountryIso": this.form.value.headquarter,
         "externalUserMail": this.currentUser.email,
-        "externalUserName": this.currentUser.firstName,
+        "externalUserName": this.currentUser.first_name,
         "externalUserComments": environment['default_user'].comments
       }
       // console.log(params, this.form.value)

@@ -39,8 +39,7 @@ export class AuthService {
   loginAD(email, password){
     return this.getUserAD(email,password).pipe(map((user:User) => { 
       console.log(user.email)  
-      console.log(user.authenticated)
-      user.firstName   
+      console.log(user.authenticated)        
       user.token= 'fake-jwt-token'
       user.expiresIn= moment().add(30,'minutes').unix()
       delete user.password
@@ -72,8 +71,8 @@ export class User {
   id: number;
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   token: string;
   expiresIn: number;
   authenticated: boolean;
