@@ -11,3 +11,23 @@
     color: red;
     padding-left: 5px;
 }
+
+.icon-info{
+    max-width: 20px;
+    margin-left: 0.5em;
+    content: url("~/assets/svg/info-icon.svg");
+    cursor: pointer;
+}
+
+.request-label{
+    align-items: center;
+    display: flex;  
+    height: 24px;
+    max-height: 24px;  
+}
+
+.text-label{
+    align-items: center;
+    display: flex;
+    max-height: 20px;
+}

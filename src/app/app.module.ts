@@ -9,7 +9,7 @@ import { ManagePartnersComponent } from './manage-partners/manage-partners.compo
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BasicAuthInterceptor } from './_helpers/basic-auth.interceptor';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -20,6 +20,7 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
 import { LoginComponent } from './login/login.component';
 import { NgbdSortableHeader } from './services/sortable.directive';
 import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HomeComponent } from './home/home.component';
     NgbModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule 
+    NgxSpinnerModule
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }
