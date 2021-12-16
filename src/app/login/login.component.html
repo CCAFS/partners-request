@@ -1,25 +1,18 @@
 <div class="back-text">
-    <div >
-        <img  routerLink="/home" class="icon-back" src="/assets/svg/back.svg" alt="" srcset="">
+    <div>
+        <img routerLink="/home" class="icon-back" src="/assets/svg/back.svg" alt="" srcset="">
     </div>
-    <div  >
+    <div>
         <p routerLink="/home">Back</p>
     </div>
 </div>
 
-
 <div class="container">
+    <h3><b>Welcome</b></h3>
+    <p class="subtitleMessage">Log in with your cgiar credentials</p>
 
-
-    <h2>Login</h2>
-    <div class="information-container">
-       
-            <div class="row ">
-                <h4>If you don’t have an access account yet, please fill out the following <a href="https://docs.google.com/forms/d/e/1FAIpQLSftv_rq3VVsy0WYHnsapxsJlEpqfUK8xisAeY05OWI2odY94g/viewform" target="_blank">form</a> and we’ll get in touch</h4>
-            </div>
-       
-    </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
         <div class="form-group">
             <label for="email">Email</label>
             <input type="text" formControlName="email" class="form-control"
@@ -29,6 +22,7 @@
                 <div *ngIf="f.email.errors.email">Email is should have a valid format.</div>
             </div>
         </div>
+
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" formControlName="password" class="form-control"
@@ -38,11 +32,15 @@
                 <div *ngIf="f.password.errors.minlength">Password minimum length is 8.</div>
             </div>
         </div>
+
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Login
             </button>
         </div>
+
     </form>
+
+    <p class="formMessage">Don’t have an account? Please fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSftv_rq3VVsy0WYHnsapxsJlEpqfUK8xisAeY05OWI2odY94g/viewform" target="_blank">form.</a></p>
 </div>

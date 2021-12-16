@@ -1,50 +1,76 @@
-.back-text {
-//   background-color: red;
+* {
+  box-sizing: border-box;
+}
 
+.back-text {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 0px 30px;
+  margin-left: 30px;
+
   div {
-   
-    width: 30px;
+    width: 25px;
     height: 60px;
     display: inline-block;
     position: relative;
 
     p {
-        filter: opacity(70%);
-        cursor: pointer;
-        padding: 0;
-        margin: 0;
-    //   background-color: rgb(29, 214, 60);
-      font-size: 25px;
+      filter: opacity(70%);
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      font-size: 16px;
       font-weight: 500;
-
       position: absolute;
       transform: translateY(-50%);
       top: 50%;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
+
     img {
-        filter: opacity(50%);
-        cursor: pointer;
-    //   display: inline-block;
-      width: 30px;
+      filter: opacity(50%);
+      cursor: pointer;
+      width: 22px;
       position: absolute;
       transform: translateY(-50%);
       top: 50%;
     }
   }
 }
-.icon-back {
-//   background-color: royalblue;
-}
-
 
 img:focus, p:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-    outline: none !important;
-    box-shadow: none;
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 72vh;
+
+  .subtitleMessage {
+    color: #666666;
   }
+
+  form {
+    width: 35%;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .formMessage {
+    color: #666666;
+    font-size: 14px;
+  }
+}
