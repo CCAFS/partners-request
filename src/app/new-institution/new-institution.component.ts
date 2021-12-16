@@ -45,6 +45,7 @@ export class NewInstitutionComponent implements OnInit {
   crps = [];
   institution_requested;
   currentUser = this.authenticationService.currentUserValue;
+  userName = this.authenticationService.currentUserValue.first_name;
 
   constructor(private institutionsService: InstitutionsService,
     private alert: AlertService,
