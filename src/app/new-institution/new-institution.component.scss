@@ -39,3 +39,23 @@
     display: flex;
     max-height: 20px;
 }
+
+.modal-header {
+    flex-flow: column;
+    align-items: center;
+
+    .modal-title {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    button.close {
+        position: absolute;
+        right: 15px;
+    }
+
+    .modalDescription {
+        margin: 5px 0;
+        text-align: justify;
+    }
+}
