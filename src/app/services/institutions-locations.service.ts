@@ -33,8 +33,8 @@ function matches(institution: [], term: string, pipe: PipeTransform) {
   return institution['name'].toLowerCase().includes(term.toLowerCase())
     || institution['institutionType']['name'].toLowerCase().includes(term)
     || (institution['acronym']==null?'':institution['acronym']).toLowerCase().includes(term)
-    || getHQName(institution['countryOfficeDTO'])['name'].toLowerCase().includes(term)
-    || getHQName(institution['countryOfficeDTO'])['isoAlpha2'].toLowerCase().includes(term)
+    || (getHQName(institution['countryOfficeDTO'])==null?'':getHQName(institution['countryOfficeDTO'])['name'].toLowerCase().includes(term))
+    || (getHQName(institution['countryOfficeDTO'])==null?'':getHQName(institution['countryOfficeDTO'])['isoAlpha2'].toLowerCase().includes(term))
     || institution['code'].toString().includes(term.toLowerCase());
 }
 
