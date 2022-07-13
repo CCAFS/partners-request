@@ -36,6 +36,7 @@ export class AuthService {
     }
     return this.http.post<any>(`${environment['apiUrl']}/UserAuthentication`,params, httpOptions);
   }
+
   loginAD(email, password){
     return this.getUserAD(email,password).pipe(map((user:User) => { 
       console.log(user.email)  
@@ -76,4 +77,5 @@ export class User {
   token: string;
   expiresIn: number;
   authenticated: boolean;
+  canAccessPartnerRequests : boolean;
 }

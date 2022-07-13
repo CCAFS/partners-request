@@ -11,8 +11,8 @@
       <a class="nav-link" routerLink="/new-institution" routerLinkActive="active">Request New
         Institution</a>
     </li>
-    <li class="nav-item">
-      <!--<a class="nav-link" routerLink="/manage-institutions" routerLinkActive="active">Manage Institutions</a>-->
+    <li class="nav-item" *ngIf="(currentUser?.canAccessPartnerRequests)!false">
+      <a class="nav-link" routerLink="/manage-institutions" routerLinkActive="active">Manage Institutions</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" style="cursor: pointer;" (click)="logOut()">

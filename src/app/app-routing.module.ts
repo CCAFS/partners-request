@@ -5,11 +5,12 @@ import { ManagePartnersComponent } from './manage-partners/manage-partners.compo
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { PartnerRoleGuard } from './_helpers/partner-role.guard';
 
 
 const routes: Routes = [
   { path: 'new-institution', component: NewInstitutionComponent, canActivate: [AuthGuard]},
-  { path: 'manage-institutions', component: ManagePartnersComponent, canActivate: [AuthGuard] },
+  { path: 'manage-institutions', component: ManagePartnersComponent, canActivate: [PartnerRoleGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
